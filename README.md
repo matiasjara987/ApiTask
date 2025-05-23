@@ -6,10 +6,10 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 ---
 
 ## Características
-✅ Creación de  Tareas
-✅ Creación de usuarios
-✅ Relación entre Usuarios y tareas
-✅ Gestión de roles
+- ✅ Creación de  Tareas
+- ✅ Creación de usuarios
+- ✅ Relación entre Usuarios y tareas
+- ✅ Gestión de roles
 
 ---
 
