@@ -32,21 +32,25 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 ---
 
 ## Estructura del proyecto
-```
- /	
+```text
+/	
 ├── src/
 |   └──main/
-|		└── config/            
-|		└── controller/        
-|		└── dto/               
-|		└── exception/         
-|		└── model/             
-|		└── repository/        
-|		└── service/           
-|		|   └── contract/     
-|		|   └── impl/          
-|		└── aspect/            
-|		└── Application.java  
+|	└── config/            
+|	└── controller/        
+|	└── dto/               
+|	└── exception/         
+|	└── model/
+|	    └── User.java
+|  	    └── Task.java             
+|	└── repository/
+|	    └── UserRepository.java
+|	    └── TaskRepository.java        
+|	└── service/           
+|	    └── contract/     
+|	    └── impl/          
+|	└── aspect/            
+|	└── Application.java  
 ```
 ## Seguridad
 
