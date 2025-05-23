@@ -32,8 +32,22 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 ---
 
 ## Estructura del proyecto
- (Pendiente)
-
+```
+ /	
+├── src/
+|   └──main/
+|		   └── config/            
+|		   └── controller/        
+|		   └── dto/               
+|	   	└── exception/         
+|   		└── model/             
+|	   	└── repository/        
+|		   └── service/           
+|	 	     └── contract/     
+|		      └── impl/          
+|	   	└── aspect/            
+|	   	└── Application.java  
+```
 ## Seguridad
 
 El sistema implementa autenticación basada en **JWT (JSON Web Tokens)** y manejo de roles para proteger los endpoints según el perfil del usuario.
