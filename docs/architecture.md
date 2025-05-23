@@ -91,17 +91,21 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 /	
 ├── src/
 |   └──main/
-|		└── config/            
-|		└── controller/        
-|		└── dto/               
-|		└── exception/         
-|		└── model/             
-|		└── repository/        
-|		└── service/           
-|		|   └── contract/     
-|		|   └── impl/          
-|		└── aspect/            
-|		└── Application.java  
+|	└── config/            
+|	└── controller/        
+|	└── dto/               
+|	└── exception/         
+|	└── model/
+|	    └── User.java
+|  	    └── Task.java             
+|	└── repository/
+|	    └── UserRepository.java
+|	    └── TaskRepository.java        
+|	└── service/           
+|	    └── contract/     
+|	    └── impl/          
+|	└── aspect/            
+|	└── Application.java  
 ```
 
 #### **Explicación de directorios**
@@ -109,17 +113,21 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 /	
 ├── src/
 |   └──main/
-|		└── config/            
-|		└── controller/        
-|		└── dto/               
-|		└── exception/         
-|		└── model/             
-|		└── repository/        
-|		└── service/           
-|		|   └── contract/     
-|		|   └── impl/          
-|		└── aspect/            
-|		└── Application.java  
+|	└── config/            
+|	└── controller/        
+|	└── dto/               
+|	└── exception/         
+|	└── model/
+|	    └── User.java
+|  	    └── Task.java             
+|	└── repository/
+|	    └── UserRepository.java
+|	    └── TaskRepository.java        
+|	└── service/           
+|	    └── contract/     
+|	    └── impl/          
+|	└── aspect/            
+|	└── Application.java  
 ```
 
 
