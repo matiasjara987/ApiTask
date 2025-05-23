@@ -6,17 +6,17 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 ---
 
 ## Características
-- ✅ Creación de  Tareas
-- ✅ Creación de usuarios
-- ✅ Relación entre Usuarios y tareas
-- ✅ Gestión de roles
+✅ Creación de  Tareas
+✅ Creación de usuarios
+✅ Relación entre Usuarios y tareas
+✅ Gestión de roles
 
 ---
 
 ## Tecnologías 
-- Lenguaje de programación: Java
-- Versión JDK: 21
-- Framework: Springboot
+- **Lenguaje de programación:** `Java`
+- **JDK:** `21`
+- **Framework principal:** `Springboot`
 
 ### Dependencias
 - `spring-boot-starter-web`
