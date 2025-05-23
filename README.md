@@ -5,23 +5,6 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 
 ---
 
-## Tecnologías 
-- Lenguaje de programación: Java
-- Versión JDK: 21
-- Framework: Springboot
-
-**Dependencias**
-- Spring Boot Starter Web
-- Spring Boot Starter Data JPA
-- H2 Database
-- ModelMapper
-- Spring Boot Starter Validation
-- Spring Boot Starter AOP
-- Spring Boot Starter Security 
-- JJWT 
-- Spring Boot Starter Test
-
----
 ## Características
 - ✅ Creación de  Tareas
 - ✅ Creación de usuarios
@@ -30,6 +13,40 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 
 ---
 
+## Tecnologías 
+- Lenguaje de programación: Java
+- Versión JDK: 21
+- Framework: Springboot
+
+### Dependencias
+- `spring-boot-starter-web`
+- `spring-boot-starter-data-jpa`
+- `h2-database`
+- `modelmapper`
+- `spring-boot-starter-validation`
+- `spring-boot-starter-aop`
+- `spring-boot-starter-security`
+- `jjwt`
+- `spring-boot-starter-test`
+
+---
+
+## Estructura del proyecto
+ (Pendiente)
+
+## Seguridad
+
+El sistema implementa autenticación basada en **JWT (JSON Web Tokens)** y manejo de roles para proteger los endpoints según el perfil del usuario.
+
+---
+
+## Próximas mejoras 
+
+- 🔄 Paginación y filtros en las tareas
+- 📈 Documentación Swagger
+- 💾 Soporte para base de datos externa (PostgreSQL/MySQL)
+
+---
 ### Autor
 
 - [Matías Jara](https://github.com/matiasjara987)
