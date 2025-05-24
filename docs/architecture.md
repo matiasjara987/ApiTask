@@ -89,9 +89,9 @@ Este documento describe la arquitectura técnica de la API REST para la gestión
 
 ### **Patrones de diseño**
 
-#### 1. MVC (Model-View-Controller)
+#### **1. MVC (Model-View-Controller)**
 
-El patrón MVC separa la aplicación en tres componentes principales:
+- El patrón MVC separa la aplicación en tres componentes principales:
 
 - **Model (Modelo):** Representa la lógica de negocio y el acceso a datos. En este proyecto, se implementa con las clases JPA (entidades).
 - **View (Vista):** En aplicaciones web como APIs REST, la vista suele ser el JSON retornado al cliente.
@@ -101,9 +101,9 @@ Este patrón favorece la separación de responsabilidades y la mantenibilidad de
 
 
 
-#### 2. DTO Pattern (Data Transfer Object)
+#### **2. DTO Pattern (Data Transfer Object)**
 
-El patrón DTO permite enviar y recibir datos de forma controlada entre el cliente y el servidor:
+- El patrón DTO permite enviar y recibir datos de forma controlada entre el cliente y el servidor:
 
 - Previene la exposición directa de las entidades del modelo.
 - Controla qué datos son visibles o editables.
@@ -113,9 +113,9 @@ Se aplica creando clases `DTO` específicas por entidad, adaptadas a cada operac
 
 
 
-#### 3. Dependency Injection (Inyección de dependencias)
+#### **3. Dependency Injection (Inyección de dependencias)**
 
-Este patrón permite desacoplar las clases de sus dependencias. En lugar de crear instancias manualmente, el framework (Spring) se encarga de inyectarlas:
+- Este patrón permite desacoplar las clases de sus dependencias. En lugar de crear instancias manualmente, el framework (Spring) se encarga de inyectarlas:
 
 - Mejora el testeo y la reutilización de componentes.
 - Promueve el bajo acoplamiento.
@@ -123,9 +123,9 @@ Este patrón permite desacoplar las clases de sus dependencias. En lugar de crea
 
 
 
-#### 4. AOP (Programación Orientada a Aspectos)
+#### **4. AOP (Programación Orientada a Aspectos)**
 
-La AOP permite separar funcionalidades transversales del flujo principal de la aplicación, como:
+- La AOP permite separar funcionalidades transversales del flujo principal de la aplicación, como:
 
 - Logging
 - Auditoría
@@ -137,7 +137,7 @@ Estas tareas se implementan como "aspectos", aplicados antes, después o alreded
 ---
 
 ### **Estructura del proyecto**
-La estructura del proyecto **ApiTask** sigue el principio de **separación de responsabilidades**, lo que permite desacoplar la lógica de negocio, los controladores, modelos, servicios, entre otros componentes. Por esta razón, se organiza en directorios y subdirectorios bien definidos.
+- La estructura del proyecto **ApiTask** sigue el principio de **separación de responsabilidades**, lo que permite desacoplar la lógica de negocio, los controladores, modelos, servicios, entre otros componentes. Por esta razón, se organiza en directorios y subdirectorios bien definidos.
 
 A continuación, se presenta un gráfico que ilustra la estructura del proyecto, incluyendo sus carpetas principales, subcarpetas, clases e interfaces relevantes. Al final, se detalla el propósito de cada una de estas carpetas para facilitar su comprensión y mantenimiento.
 
@@ -181,7 +181,7 @@ A continuación, se describen los paquetes principales del proyecto `ApiTask`, e
 ---
 
 #### `config/`
-Contiene todas las configuraciones generales necesarias para el correcto funcionamiento del sistema, como beans reutilizables (`ModelMapper`), configuración de seguridad, CORS, etc.
+- Contiene todas las configuraciones generales necesarias para el correcto funcionamiento del sistema, como beans reutilizables (`ModelMapper`), configuración de seguridad, CORS, etc.
 
 ```text
 ├── config/ → Configuraciones generales (ModelMapper, seguridad, etc.)
@@ -191,7 +191,7 @@ Contiene todas las configuraciones generales necesarias para el correcto funcion
 
 #### `controller/`
 
-Define todos los controladores REST encargados de recibir las solicitudes HTTP, validar datos y delegar la lógica de negocio a los servicios.
+- Define todos los controladores REST encargados de recibir las solicitudes HTTP, validar datos y delegar la lógica de negocio a los servicios.
 
 ```text
 ├── controller/ → Controladores REST (endpoints)
@@ -201,7 +201,7 @@ Define todos los controladores REST encargados de recibir las solicitudes HTTP, 
 
 #### `dto/`
 
-Incluye todas las clases DTO (Data Transfer Objects), usadas para enviar y recibir datos desde los endpoints de manera controlada y segura, evitando exponer entidades directamente. Se organiza por dominio.
+- Incluye todas las clases DTO (Data Transfer Objects), usadas para enviar y recibir datos desde los endpoints de manera controlada y segura, evitando exponer entidades directamente. Se organiza por dominio.
 
 ```text
 ├── dto/
@@ -213,7 +213,7 @@ Incluye todas las clases DTO (Data Transfer Objects), usadas para enviar y recib
 
 #### `exception/`
 
-Contiene las excepciones personalizadas de la aplicación y el manejador global para unificar las respuestas de error.
+- Contiene las excepciones personalizadas de la aplicación y el manejador global para unificar las respuestas de error.
 
 ```text
 ├── exception/ → Excepciones personalizadas y manejo global
@@ -223,7 +223,7 @@ Contiene las excepciones personalizadas de la aplicación y el manejador global 
 
 #### `model/`
 
-Define las entidades del dominio que representan las tablas de la base de datos. Utilizan anotaciones JPA para mapear campos y relaciones.
+- Define las entidades del dominio que representan las tablas de la base de datos. Utilizan anotaciones JPA para mapear campos y relaciones.
 
 ```text
 ├── model/ → Entidades JPA (User, Task, etc.)
@@ -233,7 +233,7 @@ Define las entidades del dominio que representan las tablas de la base de datos.
 
 #### `repository/`
 
-Aloja las interfaces que extienden `JpaRepository` u otras interfaces de Spring Data para facilitar el acceso a la base de datos sin escribir consultas SQL manuales.
+- Aloja las interfaces que extienden `JpaRepository` u otras interfaces de Spring Data para facilitar el acceso a la base de datos sin escribir consultas SQL manuales.
 
 ```text
 ├── repository/ → Interfaces de acceso a datos (JPA Repositories)
@@ -243,7 +243,7 @@ Aloja las interfaces que extienden `JpaRepository` u otras interfaces de Spring 
 
 #### `service/`
 
-Contiene la lógica de negocio de la aplicación. Se divide en dos subpaquetes:
+- Contiene la lógica de negocio de la aplicación. Se divide en dos subpaquetes:
 
 * `contract/`: Define las interfaces (contratos) que deben cumplir los servicios.
 * `impl/`: Implementaciones concretas de los servicios definidos en `contract`.
@@ -258,7 +258,7 @@ Contiene la lógica de negocio de la aplicación. Se divide en dos subpaquetes:
 
 #### `aspect/`
 
-Contiene los aspectos programados mediante AOP (Aspect-Oriented Programming), para funcionalidades transversales como logging o auditoría, desacopladas de la lógica principal.
+- Contiene los aspectos programados mediante AOP (Aspect-Oriented Programming), para funcionalidades transversales como logging o auditoría, desacopladas de la lógica principal.
 
 ```text
 ├── aspect/ → Aspectos AOP (logging, auditoría, etc.)
@@ -268,7 +268,7 @@ Contiene los aspectos programados mediante AOP (Aspect-Oriented Programming), pa
 
 #### `Application.java`
 
-Clase principal de arranque del proyecto Spring Boot. Contiene el método `main` y está anotada con `@SpringBootApplication`.
+- Clase principal de arranque del proyecto Spring Boot. Contiene el método `main` y está anotada con `@SpringBootApplication`.
 
 ```text
 └── Application.java → Clase principal de Spring Boot
