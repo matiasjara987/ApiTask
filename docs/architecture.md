@@ -4,7 +4,7 @@ El presente documento describe la arquitectura del proyecto **ApiTask**, con el 
 Para acceder a documentación adicional sobre los endpoints, la arquitectura y la guía de uso general, visite: [Documentación](https://github.com/matiasjara987/ApiTask/tree/main/docs).
 
 Saludos cordiales,  
-[Matías Jara Dev ](https://github.com/matiasjara987)
+[Matías Jara Dev ](https://github.com/matiasjaradev)
 
 ---
 
