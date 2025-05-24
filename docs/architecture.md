@@ -23,7 +23,7 @@ Este documento describe la arquitectura técnica de la API REST para la gestión
   - Todos los nombres se encuentran en el mismo idioma **Inglés** 
   - Ejemplo:
 	  - ✅ `userName` , `taskDescription` 
-	  - ❌ `nombreUsuario`, taskDescription
+	  - ❌ `nombreUsuario`, `taskDescription`
 ### 2.  **Nombres descriptivos y claros**
 - El nombre refleja con **precisión** su propósito y contenido.
 - No se hace uso de abreviaciones confusas o letras sueltas como `x`, `db`, `un`
@@ -65,12 +65,24 @@ Este documento describe la arquitectura técnica de la API REST para la gestión
     - ✅ `controller`, `model`, `service`
         
     - ❌ `controllers`, `models`, `services`
- ### Métodos
- ### Funciones
- ### Clases
- ### Interfaces e implementaciones
+ ### Método
+ - El Método será definido con camelCase y respetando los puntos presetandos en la sección anterior. Los métodos en las clases de servicio siguen los estándares de **Spring Jpa** con la finalidad de limpiar código. Para mayor información, revisar documentación oficial de [Spring JPA](https://docs.spring.io/spring-data/jpa/reference/jpa.html)
+
+### Clase
+- Una Clase sigue los principios presentados con anterioridad, presentan nombres claros con Pascal Case, atributos privados. **Métodos Getter & Setter** utilizan la dependencia de Loombook con el fin de obtener clases limpias y sin código repetitivo. 
+### Interface 
+- ApiTask sigue el principio de nombres descriptivos y claros para sus interfaces e implementaciones. Además para poder expresar con mayor claridad el contrato o firma de las interfaces heredan la firma de su directorio padre.
+- Ejemplo
+	- ✅ `UserRepository`, `UserService` 
+	- ❌ `Iuser`, `IUserRepository` 
+### Implementacion
+- Para la implementación de cualquier interface se sigue las siguientes reglas.
+1. La implementación estará desacoplada de la firma (contract), se encontrará disponible en su directorio propio `impl/`.
+2. La implementación Hereda el nombre de su interface agregando al final `Impl`.
+3. En caso de que el contrato contenga dos o más Implementaciones se creará un subdirectorio dentro de `Impl/`. 
 
 ---
+
 ## **Arquitectura**
 
 ### **Patrones de diseño**
@@ -91,9 +103,18 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 /	
 ├── src/
 |   └──main/
-|	└── config/            
+|	└── config/
+|	    └── ModelMapperConfig.java
 |	└── controller/        
-|	└── dto/               
+|	└── dto/
+|	    └── userdto/
+|  	    	└── UserChangePasswordDto.java             
+|	    	└── UserRequestDto.java
+|  	    	└── UserResponseDto.java             
+|  	    	└── UserUpdateDto.java
+|	    └── taskdto/
+|  	    	└── TaskRequestDto.java             
+|	    	└── TaskREsponseDto.java             
 |	└── exception/         
 |	└── model/
 |	    └── User.java
@@ -102,44 +123,111 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 |	    └── UserRepository.java
 |	    └── TaskRepository.java        
 |	└── service/           
-|	    └── contract/     
+|	    └── contract/
+|	    	└── UserService.java
+|	    	└── TaskService.java
 |	    └── impl/          
 |	└── aspect/            
 |	└── Application.java  
 ```
+--- 
 
-#### **Explicación de directorios**
+###  Explicación de directorios
+
+A continuación, se describen los paquetes principales del proyecto `ApiTask`, estructurado bajo principios de desacoplamiento y organización por capas:
+
+---
+
+#### `config/`
+Contiene todas las configuraciones generales necesarias para el correcto funcionamiento del sistema, como beans reutilizables (`ModelMapper`), configuración de seguridad, CORS, etc.
+
 ```text
-/	
-├── src/
-|   └──main/
-|	└── config/            
-|	└── controller/        
-|	└── dto/               
-|	└── exception/         
-|	└── model/
-|	    └── User.java
-|  	    └── Task.java             
-|	└── repository/
-|	    └── UserRepository.java
-|	    └── TaskRepository.java        
-|	└── service/           
-|	    └── contract/     
-|	    └── impl/          
-|	└── aspect/            
-|	└── Application.java  
+├── config/ → Configuraciones generales (ModelMapper, seguridad, etc.)
+````
+
+---
+
+#### `controller/`
+
+Define todos los controladores REST encargados de recibir las solicitudes HTTP, validar datos y delegar la lógica de negocio a los servicios.
+
+```text
+├── controller/ → Controladores REST (endpoints)
 ```
 
+---
 
-### Mejorar esto estructura del proyecto 
-→ Configuraciones generales (ModelMapper,
-	├── controller        → Controladores REST (endpoints)
-	├── dto               → Clases DTO (entrada/salida de datos)
-	├── exception         → Excepciones personalizadas y manejo global
-	├── model             → Entidades JPA (User, Task, etc.)
-	├── repository        → Interfaces de acceso a datos (JPA Repositories)
-	├── service           → Capa de lógica de negocio
-	│   └── interface     → Interfaces lógica de negocio
-	│   └── impl          → Implementaciones de lógica de negocio
-	├── aspect            → Aspectos AOP (logging, auditoría, etc.)
-	└── Application.java  → Clase principal de Spring Boot
+#### `dto/`
+
+Incluye todas las clases DTO (Data Transfer Objects), usadas para enviar y recibir datos desde los endpoints de manera controlada y segura, evitando exponer entidades directamente. Se organiza por dominio.
+
+```text
+├── dto/
+│   ├── userdto/ → DTOs para operaciones relacionadas a usuarios
+│   └── taskdto/ → DTOs para operaciones relacionadas a tareas
+```
+
+---
+
+#### `exception/`
+
+Contiene las excepciones personalizadas de la aplicación y el manejador global para unificar las respuestas de error.
+
+```text
+├── exception/ → Excepciones personalizadas y manejo global
+```
+
+---
+
+#### `model/`
+
+Define las entidades del dominio que representan las tablas de la base de datos. Utilizan anotaciones JPA para mapear campos y relaciones.
+
+```text
+├── model/ → Entidades JPA (User, Task, etc.)
+```
+
+---
+
+#### `repository/`
+
+Aloja las interfaces que extienden `JpaRepository` u otras interfaces de Spring Data para facilitar el acceso a la base de datos sin escribir consultas SQL manuales.
+
+```text
+├── repository/ → Interfaces de acceso a datos (JPA Repositories)
+```
+
+---
+
+#### `service/`
+
+Contiene la lógica de negocio de la aplicación. Se divide en dos subpaquetes:
+
+* `contract/`: Define las interfaces (contratos) que deben cumplir los servicios.
+* `impl/`: Implementaciones concretas de los servicios definidos en `contract`.
+
+```text
+├── service/
+│   ├── contract/ → Interfaces de lógica de negocio
+│   └── impl/     → Implementaciones concretas de lógica de negocio
+```
+
+---
+
+#### `aspect/`
+
+Contiene los aspectos programados mediante AOP (Aspect-Oriented Programming), para funcionalidades transversales como logging o auditoría, desacopladas de la lógica principal.
+
+```text
+├── aspect/ → Aspectos AOP (logging, auditoría, etc.)
+```
+
+---
+
+#### `Application.java`
+
+Clase principal de arranque del proyecto Spring Boot. Contiene el método `main` y está anotada con `@SpringBootApplication`.
+
+```text
+└── Application.java → Clase principal de Spring Boot
+```
