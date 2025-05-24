@@ -66,7 +66,7 @@ El sistema implementa autenticación basada en **JWT (JSON Web Tokens)** y manej
 ---
 ### Autor
 
-- [Matías Jara](https://github.com/matiasjara987)
+- [Matías Jara](https://github.com/matiasjaradev)
 
 ---
 
