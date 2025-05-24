@@ -38,14 +38,12 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 |   └──main/
 |	└── config/            
 |	└── controller/        
-|	└── dto/               
+|	└── dto/
+|	    └── userdto/
+|	    └── taskdto/                       
 |	└── exception/         
-|	└── model/
-|	    └── User.java
-|  	    └── Task.java             
+|	└── model/             
 |	└── repository/
-|	    └── UserRepository.java
-|	    └── TaskRepository.java        
 |	└── service/           
 |	    └── contract/     
 |	    └── impl/          
