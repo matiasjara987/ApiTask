@@ -155,8 +155,8 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 |  	|    |	└── UserResponseDto.java             
 |  	|    |	└── UserUpdateDto.java
 |	|    └── taskdto/
-|  	|    |	└── TaskRequestDto.java             
-|	|    |	└── TaskREsponseDto.java             
+|  	|    	└── TaskRequestDto.java             
+|	|    	└── TaskREsponseDto.java             
 |	└── exception/         
 |	└── model/
 |	|    └── User.java
