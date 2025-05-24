@@ -10,5 +10,11 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String title;
     private String description;
+    private boolean isCompleted;
+
+    @ManyToOne
+    @JoinColumn(name= "user_id", nullable = false)
+    private User user;
 }
