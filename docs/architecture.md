@@ -146,29 +146,30 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 ├── src/
 |   └──main/
 |	└── config/
-|	    └── ModelMapperConfig.java
+|	|    └── ModelMapperConfig.java
 |	└── controller/        
 |	└── dto/
-|	    └── userdto/
-|  	    	└── UserChangePasswordDto.java             
-|	    	└── UserRequestDto.java
-|  	    	└── UserResponseDto.java             
-|  	    	└── UserUpdateDto.java
-|	    └── taskdto/
-|  	    	└── TaskRequestDto.java             
-|	    	└── TaskREsponseDto.java             
+|	|    └── userdto/
+|  	|    |	└── UserChangePasswordDto.java             
+|	|    |	└── UserRequestDto.java
+|  	|    |	└── UserResponseDto.java             
+|  	|    |	└── UserUpdateDto.java
+|	|    └── taskdto/
+|  	|    |	└── TaskRequestDto.java             
+|	|    |	└── TaskREsponseDto.java             
 |	└── exception/         
 |	└── model/
-|	    └── User.java
-|  	    └── Task.java             
+|	|    └── User.java
+|  	|    └── Task.java             
 |	└── repository/
-|	    └── UserRepository.java
-|	    └── TaskRepository.java        
-|	└── service/           
-|	    └── contract/
-|	    	└── UserService.java
-|	    	└── TaskService.java
-|	    └── impl/          
+|	|    └── UserRepository.java
+|	|    └── TaskRepository.java        
+|	└── service/
+|	└── security/           
+|	|    └── contract/
+|	|    |	└── UserService.java
+|	|    |	└── TaskService.java
+|	|    └── impl/          
 |	└── aspect/            
 |	└── Application.java  
 ```
