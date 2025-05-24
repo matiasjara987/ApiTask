@@ -85,15 +85,57 @@ Este documento describe la arquitectura técnica de la API REST para la gestión
 
 ## **Arquitectura**
 
+- A continuación se presenta aspectos clave en la arquitectura de Apistask, como sus patrones de diseño, estructura de directorios, explicación detallada de cada capa.
+
 ### **Patrones de diseño**
-- **MVC**
-	- 
-- **DTO Pattern**
-	- 
-- **Dependency Injection**
-	- 
-- **AOP**
-	- 
+
+#### 1. MVC (Model-View-Controller)
+
+El patrón MVC separa la aplicación en tres componentes principales:
+
+- **Model (Modelo):** Representa la lógica de negocio y el acceso a datos. En este proyecto, se implementa con las clases JPA (entidades).
+- **View (Vista):** En aplicaciones web como APIs REST, la vista suele ser el JSON retornado al cliente.
+- **Controller (Controlador):** Recibe las solicitudes HTTP, las procesa y delega la lógica de negocio a los servicios.
+
+Este patrón favorece la separación de responsabilidades y la mantenibilidad del código.
+
+
+
+#### 2. DTO Pattern (Data Transfer Object)
+
+El patrón DTO permite enviar y recibir datos de forma controlada entre el cliente y el servidor:
+
+- Previene la exposición directa de las entidades del modelo.
+- Controla qué datos son visibles o editables.
+- Facilita la validación y transformación de datos.
+
+Se aplica creando clases `DTO` específicas por entidad, adaptadas a cada operación (crear, actualizar, listar, etc.).
+
+
+
+#### 3. Dependency Injection (Inyección de dependencias)
+
+Este patrón permite desacoplar las clases de sus dependencias. En lugar de crear instancias manualmente, el framework (Spring) se encarga de inyectarlas:
+
+- Mejora el testeo y la reutilización de componentes.
+- Promueve el bajo acoplamiento.
+- Se aplica mediante anotaciones como `@Autowired`, `@Service`, `@Component`, `@Repository`, etc.
+
+
+
+#### 4. AOP (Programación Orientada a Aspectos)
+
+La AOP permite separar funcionalidades transversales del flujo principal de la aplicación, como:
+
+- Logging
+- Auditoría
+- Manejo de excepciones
+- Seguridad
+
+Estas tareas se implementan como "aspectos", aplicados antes, después o alrededor de ciertos métodos usando anotaciones como `@Aspect`, `@Before`, `@After`, etc.
+
+---
+
 ### **Estructura del proyecto**
 La estructura del proyecto **ApiTask** sigue el principio de **separación de responsabilidades**, lo que permite desacoplar la lógica de negocio, los controladores, modelos, servicios, entre otros componentes. Por esta razón, se organiza en directorios y subdirectorios bien definidos.
 
@@ -145,7 +187,7 @@ Contiene todas las configuraciones generales necesarias para el correcto funcion
 ├── config/ → Configuraciones generales (ModelMapper, seguridad, etc.)
 ````
 
----
+
 
 #### `controller/`
 
@@ -155,7 +197,7 @@ Define todos los controladores REST encargados de recibir las solicitudes HTTP, 
 ├── controller/ → Controladores REST (endpoints)
 ```
 
----
+
 
 #### `dto/`
 
@@ -167,7 +209,7 @@ Incluye todas las clases DTO (Data Transfer Objects), usadas para enviar y recib
 │   └── taskdto/ → DTOs para operaciones relacionadas a tareas
 ```
 
----
+
 
 #### `exception/`
 
@@ -177,7 +219,7 @@ Contiene las excepciones personalizadas de la aplicación y el manejador global 
 ├── exception/ → Excepciones personalizadas y manejo global
 ```
 
----
+
 
 #### `model/`
 
@@ -187,7 +229,7 @@ Define las entidades del dominio que representan las tablas de la base de datos.
 ├── model/ → Entidades JPA (User, Task, etc.)
 ```
 
----
+
 
 #### `repository/`
 
@@ -197,7 +239,7 @@ Aloja las interfaces que extienden `JpaRepository` u otras interfaces de Spring 
 ├── repository/ → Interfaces de acceso a datos (JPA Repositories)
 ```
 
----
+
 
 #### `service/`
 
@@ -212,7 +254,7 @@ Contiene la lógica de negocio de la aplicación. Se divide en dos subpaquetes:
 │   └── impl/     → Implementaciones concretas de lógica de negocio
 ```
 
----
+
 
 #### `aspect/`
 
@@ -222,7 +264,7 @@ Contiene los aspectos programados mediante AOP (Aspect-Oriented Programming), pa
 ├── aspect/ → Aspectos AOP (logging, auditoría, etc.)
 ```
 
----
+
 
 #### `Application.java`
 
