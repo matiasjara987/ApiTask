@@ -1,4 +1,4 @@
-package com.backend.api.task.api_task.dto.response;
+package com.backend.api.task.api_task.dto.taskdto;
 
 import lombok.Getter;
 import lombok.Setter;
