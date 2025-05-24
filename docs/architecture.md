@@ -91,7 +91,7 @@ Este documento describe la arquitectura técnica de la API REST para la gestión
 
 #### **1. MVC (Model-View-Controller)**
 
-- El patrón MVC separa la aplicación en tres componentes principales:
+ El patrón MVC separa la aplicación en tres componentes principales:
 
 - **Model (Modelo):** Representa la lógica de negocio y el acceso a datos. En este proyecto, se implementa con las clases JPA (entidades).
 - **View (Vista):** En aplicaciones web como APIs REST, la vista suele ser el JSON retornado al cliente.
@@ -103,7 +103,7 @@ Este patrón favorece la separación de responsabilidades y la mantenibilidad de
 
 #### **2. DTO Pattern (Data Transfer Object)**
 
-- El patrón DTO permite enviar y recibir datos de forma controlada entre el cliente y el servidor:
+ El patrón DTO permite enviar y recibir datos de forma controlada entre el cliente y el servidor:
 
 - Previene la exposición directa de las entidades del modelo.
 - Controla qué datos son visibles o editables.
@@ -115,7 +115,7 @@ Se aplica creando clases `DTO` específicas por entidad, adaptadas a cada operac
 
 #### **3. Dependency Injection (Inyección de dependencias)**
 
-- Este patrón permite desacoplar las clases de sus dependencias. En lugar de crear instancias manualmente, el framework (Spring) se encarga de inyectarlas:
+ Este patrón permite desacoplar las clases de sus dependencias. En lugar de crear instancias manualmente, el framework (Spring) se encarga de inyectarlas:
 
 - Mejora el testeo y la reutilización de componentes.
 - Promueve el bajo acoplamiento.
@@ -125,7 +125,7 @@ Se aplica creando clases `DTO` específicas por entidad, adaptadas a cada operac
 
 #### **4. AOP (Programación Orientada a Aspectos)**
 
-- La AOP permite separar funcionalidades transversales del flujo principal de la aplicación, como:
+ La AOP permite separar funcionalidades transversales del flujo principal de la aplicación, como:
 
 - Logging
 - Auditoría
@@ -137,7 +137,7 @@ Estas tareas se implementan como "aspectos", aplicados antes, después o alreded
 ---
 
 ### **Estructura del proyecto**
-- La estructura del proyecto **ApiTask** sigue el principio de **separación de responsabilidades**, lo que permite desacoplar la lógica de negocio, los controladores, modelos, servicios, entre otros componentes. Por esta razón, se organiza en directorios y subdirectorios bien definidos.
+ La estructura del proyecto **ApiTask** sigue el principio de **separación de responsabilidades**, lo que permite desacoplar la lógica de negocio, los controladores, modelos, servicios, entre otros componentes. Por esta razón, se organiza en directorios y subdirectorios bien definidos.
 
 A continuación, se presenta un gráfico que ilustra la estructura del proyecto, incluyendo sus carpetas principales, subcarpetas, clases e interfaces relevantes. Al final, se detalla el propósito de cada una de estas carpetas para facilitar su comprensión y mantenimiento.
 
