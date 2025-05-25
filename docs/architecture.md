@@ -164,8 +164,8 @@ A continuación, se presenta un gráfico que ilustra la estructura del proyecto,
 |	└── repository/
 |	|    └── UserRepository.java
 |	|    └── TaskRepository.java        
-|	└── service/
-|	└── security/           
+|	└── security/
+|	└── service/           
 |	|    └── contract/
 |	|    |	└── UserService.java
 |	|    |	└── TaskService.java
