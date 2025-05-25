@@ -44,8 +44,8 @@ Permite a los usuarios registrar tareas, almacenarlas en una base de datos y rec
 |	└── exception/         
 |	└── model/             
 |	└── repository/
-|	└── service/
-|	└── security/           
+|	└── security/
+|	└── service/           
 |	    └── contract/     
 |	    └── impl/          
 |	└── aspect/            
