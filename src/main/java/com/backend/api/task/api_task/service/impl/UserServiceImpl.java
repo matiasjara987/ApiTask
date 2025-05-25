@@ -1,8 +1,7 @@
 package com.backend.api.task.api_task.service.impl;
 
-import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.api.task.api_task.dto.userdto.*;
@@ -15,12 +14,11 @@ import com.backend.api.task.api_task.service.contract.UserService;
 public class UserServiceImpl implements UserService{
 
     private final ModelMapper modelMapper;
-
-    @Autowired
     private UserRepository userRepository;
 
-    UserServiceImpl(ModelMapper modelMapper) {
+    UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository) {
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -29,9 +27,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<UserResponseDTO> findByEmail(String email) {
-
-       return userRepository.findByEmail(email);
+    public UserResponseDTO findByEmail(String email) {
+        User userFindbyEnail = userRepository.findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+       return modelMapper.map(userFindbyEnail, UserResponseDTO.class);
     }
 
     @Override
