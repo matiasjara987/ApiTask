@@ -6,5 +6,5 @@ import lombok.*;
 public class TaskRequestDTO {
     private String title;
     private String description;
-    private boolean isCompleted;
+    
 }
