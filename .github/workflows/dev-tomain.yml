@@ -1,4 +1,4 @@
-name: Sync dev to main, build, test and deploy with Docker
+name: Sync dev to main
 
 on:
     push: 
@@ -29,7 +29,7 @@ jobs:
                  git fetch origin dev
                  git merge origin/dev --no-ff -m "Merge dev into pre-prod via CI"
 
-            - name: Push main Branch
+            - name: Push to main 
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
@@ -47,6 +47,5 @@ jobs:
             - name: Run tests
               run: mvn test
 
-            - name: Build Docker image
-              run: docker build -t api-tasks-main .
+           
    
