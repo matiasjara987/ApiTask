@@ -11,7 +11,7 @@ permissions:
 jobs: 
     sync-dev-preprod:
         name: Sync dev and main
-        runs-on: ubtuntu-latest
+        runs-on: ubuntu-latest
 
         steps: 
             - name: Checkout main branch
