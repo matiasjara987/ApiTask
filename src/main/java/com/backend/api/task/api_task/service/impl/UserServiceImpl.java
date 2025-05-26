@@ -40,12 +40,6 @@ public class UserServiceImpl implements UserService{
         return modelMapper.map(user, UserResponseDTO.class);
     }
 
-
-    @Override
-    public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
-    
-    }
-
     @Override
     public void deleteUser(Long id) {
         Optional<User> deleteOptionalUser = userRepository.findById(id);
