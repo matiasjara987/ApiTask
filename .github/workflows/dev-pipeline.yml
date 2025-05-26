@@ -1,4 +1,4 @@
-name: Deploy to Pre-Staging
+name: Deploy to dev 
 
 on:
   push:
@@ -21,8 +21,7 @@ jobs:
       
       - name: Build with Maven
         run: mvn clean install
-         
+
       - name: Run test
         run: mvn test
 
-      # Aquí irán los pasos para build, test y deploy
