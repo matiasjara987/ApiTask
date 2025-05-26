@@ -1,4 +1,4 @@
-name: Sync dev to main
+name: Pull Request Main
 
 on:
     push: 
@@ -7,45 +7,33 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs: 
     sync-dev-preprod:
-        name: Sync dev and main
+        name: Create or update pull request to main 
         runs-on: ubuntu-latest
 
         steps: 
-            - name: Checkout main branch
-              uses: actions/checkout@v3
-              with:
-                ref: main
-
             - name: Set up Git
               run: |
-                 git config --global user.email "matiasjats@gmail.com"
-                 git config --global user.name "Matias jara"
+                  git config --global user.email "matiasjats@gmail.com"
+                  git config --global user.name "Matias jara"
 
-            - name: Merge to main
-              run: |
-                 git fetch origin dev
-                 git merge origin/dev --no-ff -m "Merge dev into pre-prod via CI"
-
-            - name: Push to main 
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                 git push origin main
-            
-            - name: Setup Java
-              uses: actions/setup-java@v3
-              with:
-                distribution: 'temurin'
-                java-version: '21'
-
-            - name: Build with Maven
-              run: mvn clean install
-                        
-            - name: Run tests
-              run: mvn test
-
+            - name: Checkout repo
+              uses: actions/checkout@v3
+              
+            - name: Create Pull request
+              uses: peter-evans/create-pull-reqiest@v5
+              with: 
+                token: ${{ secrets.GITHUB_TOKEN }}
+                base: main
+                branch: dev
+                title: "Merge dev into main"
+                body: |
+                  This PR was automatically create by Github Actions by Matias
+                draft: false
+                delete-branch: false
            
+
    
