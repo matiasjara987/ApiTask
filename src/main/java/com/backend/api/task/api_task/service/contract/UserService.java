@@ -11,4 +11,5 @@ public interface UserService {
     public UserResponseDTO updateUser(UserUpdateDTO userUpdateDTO);
     public void changePassword(UserChangePasswordDTO userChangePasswordDTO);
     public void deleteUser(Long id);
+    UserRequestDTO save(UserRequestDTO userRequestDTO);
 }

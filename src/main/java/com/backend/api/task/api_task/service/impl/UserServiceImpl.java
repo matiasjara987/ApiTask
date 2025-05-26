@@ -20,7 +20,6 @@ public class UserServiceImpl implements UserService{
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository ) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-    
     }
 
     @Override
@@ -55,6 +54,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(Long id) {
+    }
+
+    @Override
+    public UserRequestDTO save(UserRequestDTO userRequestDTO) {
+       return null;
     }
 
     
