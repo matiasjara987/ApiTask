@@ -22,6 +22,8 @@ jobs:
 
             - name: Checkout repo
               uses: actions/checkout@v3
+              with:
+                ref: dev
               
             - name: Create Pull request
               uses: peter-evans/create-pull-request@v5
