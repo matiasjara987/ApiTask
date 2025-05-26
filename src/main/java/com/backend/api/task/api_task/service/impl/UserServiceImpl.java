@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final EntityFinder entityFinder;
 
-    UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository, EntityFinder entityFinder) {
+    public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository, EntityFinder entityFinder) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.entityFinder = entityFinder;
