@@ -48,7 +48,7 @@ public class UserServiceTest {
    @Test
    public void testFindbyId_Success(){
     Long USER_ID = 1L;
-    String USERNAME_TEST = "matias".toUpperCase();
+    String USERNAME_TEST = "matías".toUpperCase();
     User userTestFindById = new User();
     userTestFindById.setId(USER_ID);
     userTestFindById.setUserName(USERNAME_TEST);
@@ -63,7 +63,7 @@ public class UserServiceTest {
 
    assertNotNull(result);
    assertEquals(USER_ID, result.getId());
-   assertEquals("Matías".toUpperCase(), result.getUserName());
+   assertEquals(USERNAME_TEST, result.getUserName());
    assertEquals("matias@prueba.com", result.getEmail());
 
     verify(userRepository).findById(USER_ID);
