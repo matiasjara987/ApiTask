@@ -1,41 +1,32 @@
-name: Pull Request Main
+name: Create PR from dev to main
 
 on:
-    push: 
-        branches:
-            - dev 
+  push:
+    branches:
+      - dev
 
 permissions:
   contents: write
   pull-requests: write
 
-jobs: 
-    sync-dev-preprod:
-        name: Create or update pull request to main 
-        runs-on: ubuntu-latest
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: dev  # Asegurarse de trabajar con la rama dev
 
-        steps: 
-            - name: Set up Git
-              run: |
-                  git config --global user.email "matiasjats@gmail.com"
-                  git config --global user.name "Matias jara"
-
-            - name: Checkout repo
-              uses: actions/checkout@v3
-              with:
-                ref: dev
-              
-            - name: Create Pull request
-              uses: peter-evans/create-pull-request@v5
-              with: 
-                token: ${{ secrets.GITHUB_TOKEN }}
-                base: dev
-                branch: main
-                title: "Merge dev into main"
-                body: |
-                  This PR was automatically create by Github Actions by Matias
-                draft: false
-                delete-branch: false
-           
-
-   
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main   # Rama destino
+          head: dev    # Rama fuente
+          title: "Merge dev into main"
+          body: "This PR was automatically created by GitHub Actions"
+          draft: false
+          delete-branch: false
+          commit-message: "Update from dev branch"
