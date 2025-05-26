@@ -9,19 +9,18 @@ import com.backend.api.task.api_task.exception.ResourceNotFoundException;
 import com.backend.api.task.api_task.model.User;
 import com.backend.api.task.api_task.repository.UserRepository;
 import com.backend.api.task.api_task.service.contract.UserService;
-import com.backend.api.task.api_task.service.util.EntityFinder;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    private final EntityFinder entityFinder;
+    
 
-    public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository, EntityFinder entityFinder) {
+    public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository ) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-        this.entityFinder = entityFinder;
+    
     }
 
     @Override
@@ -31,15 +30,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserResponseDTO findByEmail(String email) {
-        User userFindbyEnail = entityFinder.findByFieldOrThrow(userRepository.findByEmail(email), "User", "email", email);
-       return modelMapper.map(userFindbyEnail, UserResponseDTO.class);
+        User userFindbyEmail = userRepository.findByEmail(email)
+        .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        return modelMapper.map(userFindbyEmail, UserResponseDTO.class);
+       
     }
 
     @Override
     public UserResponseDTO findById(Long id) {
          User user = userRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
-    
         return modelMapper.map(user, UserResponseDTO.class);
     }
 
@@ -56,5 +56,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) {
     }
+
+    
+
     
 }

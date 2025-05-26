@@ -42,7 +42,7 @@ public class UserServiceTest {
    @BeforeEach
    public void setup(){
         MockitoAnnotations.openMocks(this);
-        userService = new UserServiceImpl(modelMapper, userRepository, entityFinder);
+        userService = new UserServiceImpl(modelMapper, userRepository);
    }
     
    @Test
