@@ -23,7 +23,6 @@ import com.backend.api.task.api_task.exception.ResourceNotFoundException;
 import com.backend.api.task.api_task.model.User;
 import com.backend.api.task.api_task.repository.UserRepository;
 import com.backend.api.task.api_task.service.impl.UserServiceImpl;
-import com.backend.api.task.api_task.service.util.EntityFinder;
 
 public class UserServiceTest {
    
@@ -33,8 +32,6 @@ public class UserServiceTest {
    @Mock
    private ModelMapper modelMapper;
 
-   @Mock 
-   private EntityFinder entityFinder;
 
 
    private UserServiceImpl userService;
