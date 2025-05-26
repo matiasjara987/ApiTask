@@ -1,0 +1,8 @@
+name: Push Dev
+
+on: 
+    push: 
+jobs: 
+    deploy: 
+     name: deploy dev
+     runs-on: ubuntu-latest

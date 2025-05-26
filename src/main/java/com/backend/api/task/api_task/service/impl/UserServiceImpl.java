@@ -1,6 +1,8 @@
 package com.backend.api.task.api_task.service.impl;
 
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +22,7 @@ public class UserServiceImpl implements UserService{
     public UserServiceImpl(ModelMapper modelMapper, UserRepository userRepository ) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public void createUser(UserRequestDTO userRequestDTO) {
-        
+    
     }
 
     @Override
@@ -42,10 +40,6 @@ public class UserServiceImpl implements UserService{
         return modelMapper.map(user, UserResponseDTO.class);
     }
 
-    @Override
-    public UserResponseDTO updateUser(UserUpdateDTO userUpdateDTO) {
-        return null;
-    }
 
     @Override
     public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
@@ -54,14 +48,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(Long id) {
+        Optional<User> deleteOptionalUser = userRepository.findById(id);
+        if (deleteOptionalUser.isPresent()) {
+            User deleteUser = deleteOptionalUser.get();
+            deleteUser.setActive(false);
+        } 
+        throw new ResourceNotFoundException("User", "id", id);
     }
 
     @Override
-    public UserRequestDTO save(UserRequestDTO userRequestDTO) {
-       return null;
-    }
-
-    
-
-    
+    public UserResponseDTO save(User user) {
+        User savedUser = userRepository.save(user);
+        return modelMapper.map(savedUser, UserResponseDTO.class);
+    }   
 }
