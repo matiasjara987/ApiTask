@@ -23,7 +23,6 @@ public class User {
     private String password;
     private Long creationTime;
     private boolean isActive;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> taskList = new ArrayList<>();
 }

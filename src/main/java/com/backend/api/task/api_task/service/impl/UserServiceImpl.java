@@ -1,5 +1,7 @@
 package com.backend.api.task.api_task.service.impl;
 
+import java.time.Instant;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +51,8 @@ public class UserServiceImpl implements UserService{
     @Transactional
     @Override
     public UserResponseDTO save(UserRequestDTO userRequestDTO) {
+        userRequestDTO.setCreationTime(Instant.now().toEpochMilli());
+        userRequestDTO.setActive(true);
         User userRequestDto = modelMapper.map(userRequestDTO, User.class);
         User savedUser = userRepository.save(userRequestDto);
         return modelMapper.map(savedUser, UserResponseDTO.class);
