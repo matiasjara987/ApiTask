@@ -11,5 +11,5 @@ public class UserRequestDTO {
  private String email; 
  private String password; 
  private Long creationTime;
- private Boolean isActive; 
+ private boolean isActive; 
 }

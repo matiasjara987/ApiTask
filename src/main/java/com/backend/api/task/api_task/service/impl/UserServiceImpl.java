@@ -1,16 +1,17 @@
 package com.backend.api.task.api_task.service.impl;
 
-
-import java.util.Optional;
+import java.time.Instant;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.api.task.api_task.dto.userdto.*;
 import com.backend.api.task.api_task.exception.ResourceNotFoundException;
 import com.backend.api.task.api_task.model.User;
 import com.backend.api.task.api_task.repository.UserRepository;
 import com.backend.api.task.api_task.service.contract.UserService;
+
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService{
         this.userRepository = userRepository;
     
     }
-
+    @Transactional(readOnly = true)
     @Override
     public UserResponseDTO findByEmail(String email) {
         User userFindbyEmail = userRepository.findByEmail(email)
@@ -32,27 +33,28 @@ public class UserServiceImpl implements UserService{
         return modelMapper.map(userFindbyEmail, UserResponseDTO.class);
        
     }
-
+    @Transactional(readOnly = true)
     @Override
     public UserResponseDTO findById(Long id) {
          User user = userRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
         return modelMapper.map(user, UserResponseDTO.class);
     }
-
+    @Transactional
     @Override
     public void deleteUser(Long id) {
-        Optional<User> deleteOptionalUser = userRepository.findById(id);
-        if (deleteOptionalUser.isPresent()) {
-            User deleteUser = deleteOptionalUser.get();
-            deleteUser.setActive(false);
-        } 
-        throw new ResourceNotFoundException("User", "id", id);
-    }
-
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        user.setActive(false);
+        userRepository.save(user); 
+}
+    @Transactional
     @Override
-    public UserResponseDTO save(User user) {
-        User savedUser = userRepository.save(user);
+    public UserResponseDTO save(UserRequestDTO userRequestDTO) {
+        userRequestDTO.setCreationTime(Instant.now().toEpochMilli());
+        userRequestDTO.setActive(true);
+        User userRequestDto = modelMapper.map(userRequestDTO, User.class);
+        User savedUser = userRepository.save(userRequestDto);
         return modelMapper.map(savedUser, UserResponseDTO.class);
     }   
 }
